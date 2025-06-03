@@ -1,3 +1,3 @@
 <?php
-$url="http://localhost:9000/";
+$url="http://10.40.20.31/";
 ?>

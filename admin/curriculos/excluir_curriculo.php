@@ -6,7 +6,7 @@ if (!isset($_SESSION["usuario"])) {
 }
 ?>
 <?php
-include 'db.php';
+include '../db.php';
 
 $id = $_GET['id'] ?? null;
 

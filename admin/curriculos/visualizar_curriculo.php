@@ -30,41 +30,9 @@ if (!$curriculo) {
 
 ?>
 
-
-
-
-
-
-  <!-- [ Main Content ] start -->
-  <div class="pc-container">
-    <div class="pc-content">
-      <!-- [ breadcrumb ] start -->
-      <div class="page-header">
-        <div class="page-block">
-          <div class="row align-items-center">
-            <div class="col-md-12">
-              <div class="page-header-title">
-                <h5 class="m-b-10">Home</h5>
-              </div>
-              <ul class="breadcrumb">
-                <li class="breadcrumb-item"><a href="../dashboard/index.php">Home</a></li>
-                <li class="breadcrumb-item"><a href="javascript: void(0)">Dashboard</a></li>
-                <li class="breadcrumb-item" aria-current="page">Home</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- [ breadcrumb ] end -->
-      <!-- [ Main Content ] start -->
-      <div class="row">
-<!-- editar a partir  aqui -->
-
-
-
-
-
-
+<?php
+include("../../main_format.php");
+?>
       
 <div class="container mt-5 mb-5">
     <div class="card shadow border-0">

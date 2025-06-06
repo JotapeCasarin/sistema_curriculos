@@ -1,6 +1,4 @@
-
 <!-- [Body] Start -->
-
 <body data-pc-preset="preset-1" data-pc-direction="ltr" data-pc-theme="light">
   <!-- [ Pre-loader ] start -->
 <div class="loader-bg">
@@ -20,14 +18,7 @@
     </div>
     <div class="navbar-content">
       <ul class="pc-navbar">
-        <li class="pc-item">
-          <a href="../index.php" class="pc-link">
-            <span class="pc-micon"><i class="ti ti-dashboard"></i></span>
-            <span class="pc-mtext">Dashboard</span>
-          </a>
-        </li>
-
-
+      
         <li class="pc-item pc-caption">
           <label>Pages</label>
           <i class="ti ti-news"></i>
@@ -41,7 +32,7 @@
         </li>
 
         <li class="pc-item pc-caption">
-          <label>Other</label>
+          <label>Outros</label>
           <i class="ti ti-brand-chrome"></i>
         </li>
         <li class="pc-item pc-hasmenu">

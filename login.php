@@ -2,12 +2,12 @@
  session_start();
 
 if (isset($_SESSION["usuario"])) {
-    header("Location: admin/dashboard/index.php");
+    header("Location: ./admin/index.php");
     exit();
 }
 
 $erro = "";
-require_once 'admin/curriculos/db.php';
+require_once 'admin/db.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $usuario = $_POST["usuario"];
@@ -19,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($user && $senha === $user['senha']) {
         $_SESSION["usuario"] = $usuario;
-        header("Location: admin/dashboard/index.php");
+        header("Location: admin/index.php");
         exit();
     } else {
         $erro = "Usuário ou senha inválidos.";

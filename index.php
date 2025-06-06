@@ -1,7 +1,7 @@
 <?php
-include("config.php");
-include("head.php");
-include("header.php");
+include("./config.php");
+include("./head.php");
+include("./header.php");
 
 ?>
 

@@ -1,12 +1,12 @@
 <?php
-session_start();
-if (!isset($_SESSION["usuario"])) {
-    header("Location: ../../login.php");
-    exit();
-}
+include("../config.php");
+include("../head.php");
+include("../header.php");
+
 ?>
+
 <?php
-include 'db.php';
+include '../db.php';
 
 $sql = "SELECT dp.id, dp.nome, 
                f.grau, f.curso, 
@@ -20,58 +20,81 @@ $stmt = $pdo->query($sql);
 
 $dados = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
-
-<!DOCTYPE html>
-<html lang="pt-BR">
-
-<head>
-    <meta charset="UTF-8">
-    <title>Currículos</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- Bootstrap CSS via CDN -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
-
-<body>
-
-    <div class="container my-5">
-        <h1 class="mb-4">Currículos Cadastrados</h1>
-
-        <a href="formulario_curriculo.php" class="btn btn-primary mb-4">Cadastrar Novo Currículo</a>
-
-        <?php if (count($dados) > 0): ?>
-            <div class="row row-cols-1 row-cols-md-2 g-4">
-                <?php foreach ($dados as $dado): ?>
-                    <div class="col">
-                        <div class="card shadow-sm h-100">
-                            <div class="card-body">
-                                <h5 class="card-title"><?php echo htmlspecialchars($dado['nome']); ?></h5>
-                                <p class="card-text">
-                                    <strong>Formação:</strong>
-                                    <?php echo htmlspecialchars($dado['grau'] ?? 'Não informado'); ?><br>
-                                    <strong>Cargo:</strong>
-                                    <?php echo htmlspecialchars($dado['cargo'] ?? 'Não informado'); ?><br>
-                                    <strong>Idioma:</strong>
-                                    <?php echo htmlspecialchars($dado['idioma'] ?? 'Não informado') . ' (' . htmlspecialchars($dado['nivel'] ?? '-') . ')'; ?>
-                                </p>
-                                <a href="visualizar_curriculo.php?id=<?php echo $dado['id']; ?>"
-                                    class="btn btn-outline-primary btn-sm">Ver completo</a>
-                                <a href="formulario_curriculo_edit.php?id=<?php echo $dado['id']; ?>"
-                                    class="btn btn-outline-secondary btn-sm">Editar</a>
-                                <a href="excluir_curriculo.php?id=<?php echo $dado['id']; ?>" class="btn btn-danger btn-sm"
-                                    onclick="return confirm('Tem certeza que deseja excluir este currículo?');">Excluir</a>
-                            </div>
-                        </div>
-                    </div>
-                <?php endforeach; ?>
+  <!-- [ Main Content ] start -->
+  <div class="pc-container">
+    <div class="pc-content">
+      <!-- [ breadcrumb ] start -->
+      <div class="page-header">
+        <div class="page-block">
+          <div class="row align-items-center">
+            <div class="col-md-12">
+              <div class="page-header-title">
+                <h5 class="m-b-10">Home</h5>
+              </div>
+              <ul class="breadcrumb">
+                <li class="breadcrumb-item"><a href="../dashboard/index.php">Home</a></li>
+                <li class="breadcrumb-item"><a href="javascript: void(0)">Dashboard</a></li>
+                <li class="breadcrumb-item" aria-current="page">Home</li>
+              </ul>
             </div>
-        <?php else: ?>
-            <div class="alert alert-info">Nenhum currículo cadastrado.</div>
-        <?php endif; ?>
+          </div>
+        </div>
+      </div>
+      <!-- [ breadcrumb ] end -->
+      <!-- [ Main Content ] start -->
+      <div class="row">
+<!-- editar a partir  aqui -->
+
+
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card my-5">
+                <div class="card-header">
+                    <h5>Currículos Cadastrados</h5>
+                </div>
+                <div class="card-body">
+                    <a href="../dashboard/index.php" class="btn btn-secondary mb-3">Retornar ao Dashboard</a>
+                    <a href="formulario_curriculo.php" class="btn btn-primary mb-3">Cadastrar Novo Currículo</a>
+
+                    <?php if (count($dados) > 0): ?>
+                        <div class="row row-cols-1 row-cols-md-2 g-4">
+                            <?php foreach ($dados as $dado): ?>
+                                <div class="col">
+                                    <div class="card shadow-sm h-100">
+                                        <div class="card-body">
+                                            <h5 class="card-title"><?php echo htmlspecialchars($dado['nome']); ?></h5>
+                                            <p class="card-text">
+                                                <strong>Formação:</strong>
+                                                <?php echo htmlspecialchars($dado['grau'] ?? 'Não informado'); ?><br>
+                                                <strong>Cargo:</strong>
+                                                <?php echo htmlspecialchars($dado['cargo'] ?? 'Não informado'); ?><br>
+                                                <strong>Idioma:</strong>
+                                                <?php echo htmlspecialchars($dado['idioma'] ?? 'Não informado') . ' (' . htmlspecialchars($dado['nivel'] ?? '-') . ')'; ?>
+                                            </p>
+                                            <a href="visualizar_curriculo.php?id=<?php echo $dado['id']; ?>"
+                                                class="btn btn-outline-primary btn-sm">Ver completo</a>
+                                            <a href="formulario_curriculo_edit.php?id=<?php echo $dado['id']; ?>"
+                                                class="btn btn-outline-warning btn-sm">Editar</a>
+                                            <a href="excluir_curriculo.php?id=<?php echo $dado['id']; ?>" class="btn btn-danger btn-sm"
+                                                onclick="return confirm('Tem certeza que deseja excluir este currículo?');">Excluir</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            <?php endforeach; ?>
+                        </div>
+                    <?php else: ?>
+                        <div class="alert alert-info mt-3">Nenhum currículo cadastrado.</div>
+                    <?php endif; ?>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <!-- Bootstrap JS via CDN (opcional, caso use componentes JS) -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-</body>
+    
+<!-- editar ate aqui -->
+    </div></div></div>
 
-</html>
+    <?php
+include("../footer.php");
+
+?>

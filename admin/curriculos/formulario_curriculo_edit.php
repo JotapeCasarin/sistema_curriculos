@@ -10,8 +10,8 @@
 <?php
 session_start();
 if (!isset($_SESSION["usuario"])) {
-    header("Location: ../../login.php");
-    exit();
+  header("Location: ../../login.php");
+  exit();
 }
 ?>
 <?php
@@ -45,7 +45,7 @@ $idiomas = $stmt2->fetch(PDO::FETCH_ASSOC);
   <div class="container my-5">
     <h1 class="mb-4">Cadastro de Currículo</h1>
 
-    <form action="editar_curriculo.php" method="POST" class="card p-4 shadow-sm">
+    <form action="salvar_curriculo.php" method="POST" class="card p-4 shadow-sm">
 
       <!-- Dados Pessoais -->
       <h4 class="mb-3">Dados Pessoais</h4>
@@ -188,9 +188,38 @@ $idiomas = $stmt2->fetch(PDO::FETCH_ASSOC);
       <div class="row g-3">
         <div class="col-md-4">
           <label class="form-label">Idioma</label>
-          <input type="text" name="idioma" value="<?php echo $idiomas['idioma'] ?? ''; ?>" class="form-control"
-            required>
+          <select name="idioma" class="form-select" required>
+            <?php
+            $idiomas_populares = [
+              'Inglês',
+              'Mandarim',
+              'Hindi',
+              'Espanhol',
+              'Francês',
+              'Árabe',
+              'Bengali',
+              'Russo',
+              'Português',
+              'Urdu',
+              'Indonésio',
+              'Alemão',
+              'Japonês',
+              'Suaíli',
+              'Marata',
+              'Telugu',
+              'Turco',
+              'Tâmil',
+              'Vietnamita',
+              'Coreano'
+            ];
+            foreach ($idiomas_populares as $idioma) {
+              $selected = (isset($idiomas['idioma']) && $idiomas['idioma'] == $idioma) ? 'selected' : '';
+              echo "<option value=\"$idioma\" $selected>$idioma</option>";
+            }
+            ?>
+          </select>
         </div>
+
         <div class="col-md-3">
           <label class="form-label">Nível</label>
           <select name="nivel" class="form-select">
@@ -200,7 +229,6 @@ $idiomas = $stmt2->fetch(PDO::FETCH_ASSOC);
             <option value="Fluente" <?php echo (isset($idiomas['nivel']) && $idiomas['nivel'] == 'Fluente') ? 'selected' : ''; ?>>Fluente</option>
           </select>
         </div>
-
       </div>
 
       <input type="hidden" name="id" value="<?php echo $pessoa['id']; ?>" class="form-control">

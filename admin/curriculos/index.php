@@ -71,7 +71,7 @@ $dados = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                                 <strong>Idioma:</strong>
                                                 <?php echo htmlspecialchars($dado['idioma'] ?? 'Não informado') . ' (' . htmlspecialchars($dado['nivel'] ?? '-') . ')'; ?>
                                             </p>
-                                            <a href="visualizar_curriculo.php?id=<?php echo $dado['id']; ?>"
+                                            <a href="./visualizar_curriculo.php?id=<?php echo $dado['id']; ?>"
                                                 class="btn btn-outline-primary btn-sm">Ver completo</a>
                                             <a href="formulario_curriculo_edit.php?id=<?php echo $dado['id']; ?>"
                                                 class="btn btn-outline-warning btn-sm">Editar</a>

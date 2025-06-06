@@ -17,7 +17,7 @@
           
           <li class="dropdown"><a href="#"><span>mais opções</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
             <ul>
-              <li><a href="./admin/">Administração</a></li>
+              <li><a href="login.php">Administração</a></li>
             </ul>
           </li>
           <li><a href="#contact">Contato</a></li>

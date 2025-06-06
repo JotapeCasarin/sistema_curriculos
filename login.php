@@ -2,7 +2,7 @@
  session_start();
 
 if (isset($_SESSION["usuario"])) {
-    header("Location: ./admin/index.php");
+    header("Location: ./admin/curriculos/index.php");
     exit();
 }
 
@@ -17,18 +17,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->execute(['usuario' => $usuario]);
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    if ($user && $senha === $user['senha']) {
-        $_SESSION["usuario"] = $usuario;
-        header("Location: admin/index.php");
+    if ($user && password_verify($senha, $user['senha'])) {
+        $_SESSION['usuario'] = $usuario;
+        header("Location: ./admin/curriculos/index.php");
         exit();
     } else {
-        $erro = "Usuário ou senha inválidos.";
+        $msg = "Usuário ou senha inválidos.";
     }
 }
 $url = 'http://localhost:9000/admin/'; // Define the base URL for your application
 
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">

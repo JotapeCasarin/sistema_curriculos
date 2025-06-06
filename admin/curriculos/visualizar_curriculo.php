@@ -1,12 +1,9 @@
 <?php
-session_start();
-if (!isset($_SESSION["usuario"])) {
-    header("Location: ../../login.php");
-    exit();
-}
-?>
-<?php
-include 'db.php';
+include("../config.php");
+require_once("../db.php");
+include("../head.php");
+include("../header.php");
+
 
 if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
     die("ID do currículo inválido.");
@@ -30,16 +27,45 @@ $curriculo = $stmt->fetch(PDO::FETCH_ASSOC);
 if (!$curriculo) {
     die("Currículo não encontrado.");
 }
+
 ?>
 
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <title>Visualizar Currículo</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body class="bg-light">
+
+
+
+
+
+  <!-- [ Main Content ] start -->
+  <div class="pc-container">
+    <div class="pc-content">
+      <!-- [ breadcrumb ] start -->
+      <div class="page-header">
+        <div class="page-block">
+          <div class="row align-items-center">
+            <div class="col-md-12">
+              <div class="page-header-title">
+                <h5 class="m-b-10">Home</h5>
+              </div>
+              <ul class="breadcrumb">
+                <li class="breadcrumb-item"><a href="../dashboard/index.php">Home</a></li>
+                <li class="breadcrumb-item"><a href="javascript: void(0)">Dashboard</a></li>
+                <li class="breadcrumb-item" aria-current="page">Home</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- [ breadcrumb ] end -->
+      <!-- [ Main Content ] start -->
+      <div class="row">
+<!-- editar a partir  aqui -->
+
+
+
+
+
+
+      
 <div class="container mt-5 mb-5">
     <div class="card shadow border-0">
         <div class="card-header bg-primary text-white">
@@ -96,5 +122,12 @@ if (!$curriculo) {
         </div>
     </div>
 </div>
-</body>
-</html>
+
+
+<!-- editar ate aqui -->
+    </div></div></div>
+
+    <?php
+include("../footer.php");
+
+?>

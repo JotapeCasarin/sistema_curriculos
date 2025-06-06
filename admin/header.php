@@ -34,7 +34,7 @@
         </li>
         
         <li class="pc-item">
-          <a href="./curriculos/index.php" class="pc-link">
+          <a href="<?php echo $urlAdmin; ?>curriculos/index.php" class="pc-link">
             <span class="pc-micon"><i class="ti ti-user-plus"></i></span>
             <span class="pc-mtext">Curriculos</span>
           </a>
@@ -234,7 +234,7 @@
               <h6 class="mb-1">Stebin Ben</h6>
               <span>UI/UX Designer</span>
             </div>
-            <a href="../logout.php" class="pc-head-link bg-transparent"><i class="ti ti-power text-danger"></i></a>
+            <a href="<?php echo $url; ?>logout.php" class="pc-head-link bg-transparent"><i class="ti ti-power text-danger"></i></a>
           </div>
         </div>
         <ul class="nav drp-tabs nav-fill nav-tabs" id="mydrpTab" role="tablist">
@@ -283,7 +283,7 @@
               <i class="ti ti-wallet"></i>
               <span>Billing</span>
             </a>
-            <a href="../logout.php" class="dropdown-item">
+            <a href="<?php echo $url; ?>logout.php" class="dropdown-item">
               <i class="ti ti-power"></i>
               <span>Logout</span>
             </a>

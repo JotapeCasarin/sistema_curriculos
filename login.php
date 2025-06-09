@@ -19,6 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($user && password_verify($senha, $user['senha'])) {
         $_SESSION['usuario'] = $usuario;
+        $_SESSION['id'] = $user['id'];
         header("Location: ./admin/curriculos/index.php");
         exit();
     } else {

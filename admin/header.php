@@ -1,3 +1,13 @@
+<?php
+include 'db.php';
+$stmt = $pdo->prepare("SELECT * FROM dados_pessoais WHERE fk_user = ?");
+$stmt->execute([$_SESSION['id']]);
+$nome1 = $stmt->fetch(PDO::FETCH_ASSOC);
+
+$nome = explode(" ", $nome1['nome']);
+?>
+
+
 <!-- [Body] Start -->
 <body data-pc-preset="preset-1" data-pc-direction="ltr" data-pc-theme="light">
   <!-- [ Pre-loader ] start -->
@@ -213,7 +223,7 @@
         aria-expanded="false"
       >
         <img src="<?php echo $urlAdmin; ?>/assets/images/user/avatar-2.jpg" alt="user-image" class="user-avtar">
-        <span>Stebin Ben</span>
+        <span><?php echo $nome[0] . ' ' . $nome[1]?></span>
       </a>
       <div class="dropdown-menu dropdown-user-profile dropdown-menu-end pc-h-dropdown">
         <div class="dropdown-header">
@@ -222,7 +232,7 @@
               <img src="<?php echo $urlAdmin; ?>/assets/images/user/avatar-2.jpg" alt="user-image" class="user-avtar wid-35">
             </div>
             <div class="flex-grow-1 ms-3">
-              <h6 class="mb-1">Stebin Ben</h6>
+              <h6 class="mb-1"><?php echo $nome1['nome']?></h6>
               <span>UI/UX Designer</span>
             </div>
             <a href="<?php echo $url; ?>logout.php" class="pc-head-link bg-transparent"><i class="ti ti-power text-danger"></i></a>

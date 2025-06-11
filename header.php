@@ -15,9 +15,10 @@
           <li><a href="#services">Serviços</a></li>
           <li><a href="#team">Time</a></li>
           
-          <li class="dropdown"><a href="#"><span>mais opções</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+          <li class="dropdown"><a href="#"><span>curriculos</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
             <ul>
-              <li><a href="login.php">Administração</a></li>
+              <li><a href="<?php echo $url; ?>admin/login_admin.php">Administração</a></li>
+              <li><a href="/usuarios/login_usuarios.php">Seu curriculo</a></li>
             </ul>
           </li>
           <li><a href="#contact">Contato</a></li>

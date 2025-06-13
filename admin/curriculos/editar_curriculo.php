@@ -4,11 +4,8 @@ if (!isset($_SESSION["usuario"])) {
     header("Location: ../../login.php");
     exit();
 }
-?>
-<?php
-include 'db.php';
 
-
+include '../db.php';
 
 // Função para tratar datas inválidas
 function tratarData($data) {
@@ -17,10 +14,7 @@ function tratarData($data) {
 
 // Obter ID do currículo
 $dados_pessoais_id = $_POST['id'] ?? null;
-
-echo $dados_pessoais_id;
 if (!$dados_pessoais_id) {
-    
     die("ID do currículo não informado.");
 }
 
@@ -69,7 +63,7 @@ try {
         WHERE id = ?");
     $stmt->execute([$nome, $cpf, $rg, $data_nascimento, $email, $telefone, $endereco, $cidade, $estado, $cep, $nacionalidade, $estado_civil, $genero, $dados_pessoais_id]);
 
-    // Atualizar formação (substituindo o único registro, para simplificação)
+    // Atualizar formação
     $stmt = $pdo->prepare("UPDATE formacoes SET 
         grau = ?, curso = ?, instituicao = ?, ano_inicio = ?, ano_conclusao = ?, concluido = ?
         WHERE dados_pessoais_id = ?");
@@ -88,11 +82,60 @@ try {
     $stmt->execute([$idioma, $nivel, $dados_pessoais_id]);
 
     $pdo->commit();
+    ?>
 
-    echo "Currículo atualizado com sucesso! <a href='index.php'>Voltar</a>";
+    <!DOCTYPE html>
+    <html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <title>Currículo Atualizado</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    </head>
+    <body class="bg-light">
+        <div class="container mt-5">
+            <div class="alert alert-success text-center" role="alert">
+                <h4 class="alert-heading">Alterações salvas!</h4>
+                <p>O currículo foi atualizado com sucesso.</p>
+            </div>
+            <div class="row justify-content-center mt-4">
+                <div class="col-md-3 d-grid mb-2">
+                    <a href="formulario_curriculo_edit.php?id=<?= $dados_pessoais_id ?>" class="btn btn-primary">Editar novamente</a>
+                </div>
+                <div class="col-md-3 d-grid mb-2">
+                    <a href="index.php" class="btn btn-secondary">Retornar à página inicial</a>
+                </div>
+            </div>
+        </div>
+    </body>
+    </html>
 
+    <?php
 } catch (Exception $e) {
     $pdo->rollBack();
-    die("Erro ao atualizar currículo: " . $e->getMessage());
+    ?>
+
+    <!DOCTYPE html>
+    <html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <title>Erro ao Atualizar</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    </head>
+    <body class="bg-light">
+        <div class="container mt-5">
+            <div class="alert alert-danger text-center" role="alert">
+                <h4 class="alert-heading">Erro!</h4>
+                <p>Não foi possível atualizar o currículo.</p>
+                <hr>
+                <p class="mb-0"><?= htmlspecialchars($e->getMessage()) ?></p>
+            </div>
+            <div class="text-center mt-4">
+                <a href="index.php" class="btn btn-secondary">Voltar</a>
+            </div>
+        </div>
+    </body>
+    </html>
+
+    <?php
 }
 ?>

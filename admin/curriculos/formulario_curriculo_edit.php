@@ -45,7 +45,7 @@ include("../../main_format.php");
     <div class="container my-5">
       <h1 class="mb-0"><?php echo htmlspecialchars($pessoa['nome']); ?></h1>
 
-      <form action="salvar_curriculo.php" method="POST" class="card p-4 shadow-sm">
+      <form action="editar_curriculo.php" method="POST" class="card p-4 shadow-sm">
 
         <!-- Dados Pessoais -->
         <h4 class="mb-3">Dados Pessoais</h4>

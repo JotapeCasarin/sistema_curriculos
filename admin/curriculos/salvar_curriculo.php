@@ -7,7 +7,7 @@ if (!isset($_SESSION["usuario"])) {
 ?>
 <?php
 // 1. Conexão com o banco de dados
-include 'db.php';
+include '../db.php';
 
 // 2. Coletar dados do formulário
 $nome = $_POST['nome'];

@@ -30,6 +30,8 @@ if (!$curriculo) {
 
 ?>
 
+
+
 <?php
 include("../../main_format.php");
 ?>
@@ -47,6 +49,20 @@ include("../../main_format.php");
             <p><strong>Email:</strong> <?php echo $curriculo['email']; ?></p>
             <p><strong>Telefone:</strong> <?php echo $curriculo['telefone']; ?></p>
             <p><strong>Endereço:</strong> <?php echo $curriculo['endereco'] . ", " . $curriculo['cidade'] . " - " . $curriculo['estado'] . ", CEP " . $curriculo['cep']; ?></p>
+            <?php
+                // Monta o endereço para o mapa
+                $endereco_mapa = urlencode($curriculo['endereco'] . ', ' . $curriculo['cidade'] . ', ' . $curriculo['estado'] . ', ' . $curriculo['cep']);
+            ?>
+            <div class="mb-3">
+                <iframe
+                    width="100%"
+                    height="300"
+                    frameborder="0"
+                    style="border:0"
+                    src="https://www.google.com/maps?q=<?php echo $endereco_mapa; ?>&output=embed"
+                    allowfullscreen>
+                </iframe>
+            </div>
             <p><strong>Nacionalidade:</strong> <?php echo $curriculo['nacionalidade']; ?></p>
             <p><strong>Estado Civil:</strong> <?php echo $curriculo['estado_civil']; ?></p>
             <p><strong>Gênero:</strong> <?php echo $curriculo['genero']; ?></p>
